@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,12 +47,13 @@ public class SearchCityActivity extends AppCompatActivity {
         if (sharedCity != null) {
 
             Button buttonCity = (Button) findViewById(R.id.buttonDefault);
+            ImageButton deleteButton = (ImageButton) findViewById(R.id.deleteButton);
             TextView textCity = (TextView) findViewById(R.id.textViewDefaultLocalization);
 
             textCity.setText("");
             buttonCity.setText(sharedCity);
             buttonCity.setVisibility(View.VISIBLE);
-
+            deleteButton.setVisibility(View.VISIBLE);
         }
 
 
@@ -99,6 +101,9 @@ public class SearchCityActivity extends AppCompatActivity {
                 localizationButton.setText(locationEditText.getText().toString());
                 localizationButton.setVisibility(View.VISIBLE);
 
+                ImageButton deleteButton = (ImageButton) findViewById(R.id.deleteButton);
+                deleteButton.setVisibility(View.VISIBLE);
+
 
                 dismissKeyboard(locationEditText);
 
@@ -111,15 +116,12 @@ public class SearchCityActivity extends AppCompatActivity {
         });
 
 
-        Button localizationButton = (Button) findViewById(R.id.buttonDefault);
-        localizationButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton deleteButton = (ImageButton) findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
                 showDialog2();
-
-
             }
 
         });
@@ -155,6 +157,9 @@ public class SearchCityActivity extends AppCompatActivity {
 
                         localizationButton.setVisibility(View.INVISIBLE);
                         localizationButton.setText("");
+
+                        ImageButton deleteButton = (ImageButton) findViewById(R.id.deleteButton);
+                        deleteButton.setVisibility(View.INVISIBLE);
 
 
                         Toast.makeText(context, "Usunięto domyślną lokalizację",
